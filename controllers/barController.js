@@ -25,9 +25,9 @@ class BarController {
    
     async create(req, res, next){
         try{
-            const {id, name, pictureMain, picture_1, picture_2, description, rating, address, city} = req.body
+            const {id, name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E} = req.body
            
-            const bar = await Bars.create({id, name, pictureMain, picture_1, picture_2, description, rating, address, city})
+            const bar = await Bars.create({id, name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E})
             
             return res.json(bar)
         } catch (e) {
