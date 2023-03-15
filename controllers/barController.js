@@ -2,16 +2,15 @@ const {Bars} = require ('../models/models')
 const ApiError = require('../error/ApiError')
 
 class BarController {
-    async create(req, res){
-        const {name} = req.body
-        const bar = await Bars.create({name})
-        return res.json(bar)
-    }
+    // async create(req, res){
+    //     const {name} = req.body
+    //     const bar = await Bars.create({name})
+    //     return res.json(bar)
+    // }
    
     async getAll(req, res){
         
         const bars = await Bars.findAll()
-        // console.log({bars});
         return res.json(bars)
     }
     async getOne(req, res){
@@ -24,6 +23,17 @@ class BarController {
         return res.json(bar)
     }
    
+    async create(req, res, next){
+        try{
+            const {id, name, pictureMain, picture_1, picture_2, description, rating, address, city} = req.body
+           
+            const bar = await Bars.create({id, name, pictureMain, picture_1, picture_2, description, rating, address, city})
+            
+            return res.json(bar)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
+    }
 }
 
 
