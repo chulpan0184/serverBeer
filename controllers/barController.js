@@ -2,11 +2,6 @@ const {Bars} = require ('../models/models')
 const ApiError = require('../error/ApiError')
 
 class BarController {
-    // async create(req, res){
-    //     const {name} = req.body
-    //     const bar = await Bars.create({name})
-    //     return res.json(bar)
-    // }
    
     async getAll(req, res){
         
@@ -34,10 +29,40 @@ class BarController {
             next(ApiError.badRequest(e.message))
         }
     }
+
+    async deleteBar (req, res){
+        try {
+          const {id} = req.params
+      
+          const bar = await Bars.destroy(
+            {
+                where: {id},
+            }, 
+          ).then(function(rowDeleted){
+            if(rowDeleted === id){
+               console.log('Deleted successfully');
+             }
+            })
+          return res.sendStatus(204)
+        } catch (error) {
+          return res.sendStatus(500)
+        }
+      }
+
+  async updateBar(req, res, next){
+    try{
+        const {id} = req.params
+        const {name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E} = req.body
+        await Bars.update(
+            {name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E },
+            { where: {id}}
+        )
+        return res.json(req.body)
+    } catch (e) {
+        next(ApiError.badRequest(e.message))
+    }
 }
-
-
-
+}
 
 
 module.exports = new BarController()

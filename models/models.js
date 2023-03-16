@@ -5,9 +5,9 @@ const {DataTypes} = require('sequelize')//для описания полей (т
 const Bars = sequelize.define('bars', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false},
-    pictureMain: {type: DataTypes.STRING, allowNull: false},
-    picture_1: {type: DataTypes.STRING, allowNull: false},
-    picture_2: {type: DataTypes.STRING, allowNull: false},
+    pictureMain: {type: DataTypes.STRING},
+    picture_1: {type: DataTypes.STRING},
+    picture_2: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING, allowNull: false},
     rating: {type: DataTypes.INTEGER, defaultValue: 1},
     address: {type: DataTypes.STRING, allowNull: false},
