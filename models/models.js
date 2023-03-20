@@ -9,6 +9,7 @@ const Bars = sequelize.define('bars', {
     picture_1: {type: DataTypes.STRING},
     picture_2: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING, allowNull: false},
+    description_2: {type: DataTypes.STRING, allowNull: false},
     rating: {type: DataTypes.INTEGER, defaultValue: 1},
     address: {type: DataTypes.STRING, allowNull: false},
     city: {type: DataTypes.STRING, allowNull: false},

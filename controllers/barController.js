@@ -20,9 +20,9 @@ class BarController {
    
     async create(req, res, next){
         try{
-            const {id, name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E} = req.body
+            const {id, name, pictureMain, picture_1, picture_2, description, description_2, rating, address, city, latitude_N, longitude_E} = req.body
            
-            const bar = await Bars.create({id, name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E})
+            const bar = await Bars.create({id, name, pictureMain, picture_1, picture_2, description, description_2, rating, address, city, latitude_N, longitude_E})
             
             return res.json(bar)
         } catch (e) {
@@ -52,9 +52,9 @@ class BarController {
   async updateBar(req, res, next){
     try{
         const {id} = req.params
-        const {name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E} = req.body
+        const {name, pictureMain, picture_1, picture_2, description, description_2, rating, address, city, latitude_N, longitude_E} = req.body
         await Bars.update(
-            {name, pictureMain, picture_1, picture_2, description, rating, address, city, latitude_N, longitude_E },
+            {name, pictureMain, picture_1, picture_2, description, description_2, rating, address, city, latitude_N, longitude_E },
             { where: {id}}
         )
         return res.json(req.body)
